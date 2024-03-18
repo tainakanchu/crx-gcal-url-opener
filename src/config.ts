@@ -29,12 +29,12 @@ const urlRules = [
     provider: "Amazon Chime",
   },
   {
-    test: /^https:\/\/meet\.google\.com\//,
-    provider: "Google Meet",
-  },
-  {
     test: /^https:\/\/[^\.]+\.ovice\.in\//,
     provider: "ovice",
+  },
+  {
+    test: /^https:\/\/meet\.google\.com\//,
+    provider: "Google Meet",
   },
 ];
 

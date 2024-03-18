@@ -70,6 +70,23 @@ describe("Config", () => {
         })
       ).toMatchObject({ rule: { provider: "WebEx" } });
     });
+    it("returns ovice rather than Google Meet", async () => {
+      const config = await loadConfig();
+      expect(
+        config.extractValidUrl({
+          hangoutLink: "https://meet.google.com/xxx",
+          description: "https://hooli.ovice.in/@11,11?object_connect_to=LLLLL",
+        })
+      ).toMatchObject({ rule: { provider: "ovice" } });
+      expect(
+        config.extractValidUrl({
+          description: [
+            "https://meet.google.com/xxx",
+            "https://hooli.ovice.in/@11,11?object_connect_to=LLLLL",
+          ].join("\n"),
+        })
+      ).toMatchObject({ rule: { provider: "ovice" } });
+    });
     it("can extract Google Meet URL from hangoutLink", async () => {
       const config = await loadConfig();
       expect(
@@ -154,6 +171,15 @@ describe("Config", () => {
         const config = await loadConfig();
         expect(config.extractValidUrl({ description: url })).toMatchObject({
           rule: { provider: "WebEx" },
+        });
+      }
+    );
+    it.each(["https://hooli.ovice.in/@11,11?object_connect_to=LLLLL"])(
+      "can extract ovice from description: %s",
+      async (url) => {
+        const config = await loadConfig();
+        expect(config.extractValidUrl({ description: url })).toMatchObject({
+          rule: { provider: "ovice" },
         });
       }
     );
