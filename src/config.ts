@@ -32,6 +32,10 @@ const urlRules = [
     test: /^https:\/\/meet\.google\.com\//,
     provider: "Google Meet",
   },
+  {
+    test: /^https:\/\/[^\.]+\.ovice\.in\//,
+    provider: "ovice",
+  },
 ];
 
 export async function loadConfig(): Promise<Config> {
