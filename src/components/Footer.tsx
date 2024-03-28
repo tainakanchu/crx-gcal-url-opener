@@ -8,12 +8,15 @@ export function Footer() {
   return (
     <Container component="footer">
       <Typography variant="body2">
-        &copy; {t("author")} |{" "}
+        Edition of {t("author")} |{" "}
         <span data-testid="app-version">{t("version", [PACKAGE_VERSION])}</span>{" "}
         |{" "}
         <a href={URL_PRIVACY_POLICY} target="_blank" rel="noopener">
           {t("privacyPolicy")}
         </a>
+      </Typography>
+      <Typography variant="body2">
+        Thanks to original author: &copy; {t("originalAuthor")}
       </Typography>
     </Container>
   );

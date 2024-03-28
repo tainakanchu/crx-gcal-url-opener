@@ -1,6 +1,7 @@
 {
-  "author": { "message": "Leko" },
-  "appName": { "message": "gcal-url-opener" },
+  "author": { "message": "tainakanchu" },
+  "originalAuthor": { "message": "Leko" },
+  "appName": { "message": "gcal-url-opener-ovice-edition" },
   "refresh": { "message": "Refresh" },
   "signOut": { "message": "Sign out" },
   "eventStartsIn": {
