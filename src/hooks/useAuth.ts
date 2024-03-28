@@ -1,12 +1,21 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { getAuthToken } from "../auth";
 
 export function useAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const isSigningIn = useRef(false);
+
   const signIn = useCallback(() => {
-    chrome.runtime.sendMessage({ type: "SignInRequest" });
+    if (isSigningIn.current) {
+      return;
+    }
+    isSigningIn.current = true;
+    chrome.runtime.sendMessage({ type: "SignInRequest" }).finally(() => {
+      isSigningIn.current = false;
+    });
   }, []);
+
   const signOut = useCallback(() => {
     chrome.runtime.sendMessage({ type: "SignOutRequest" }).then(() => {
       setIsAuthenticated(false);
