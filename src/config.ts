@@ -74,11 +74,13 @@ class Config {
     hangoutLink?: string;
     description?: string;
     conferenceData?: any;
+    location?: string;
   }): {
     url: string;
     rule: URLRule;
   } | null {
     const urls: string[] = [
+      ...getUrls(event.location ?? ""),
       ...getUrls(event.description ?? "", { requireSchemeOrWww: false }),
     ];
     for (const rule of this.urlRules) {
