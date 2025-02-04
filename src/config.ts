@@ -21,7 +21,12 @@ const urlRules = [
     provider: "Microsoft Teams",
   },
   {
-    test: /^https:\/\/\d+.webex.com\/\d+\/j.php/,
+    test: /^https:\/\/\d+\.webex\.com\/\d+\/j\.php/,
+    provider: "WebEx",
+  },
+  //
+  {
+    test: /^https:\/\/\w+\.my\.webex\.com\/\w+\.my\/\j.php/,
     provider: "WebEx",
   },
   {
@@ -31,6 +36,14 @@ const urlRules = [
   {
     test: /^https:\/\/[^\.]+\.ovice\.in\//,
     provider: "ovice",
+  },
+  {
+    test: /^https:\/\/vc-jp.larksuite.com\/j\//,
+    provider: "Lark",
+  },
+  {
+    test: /^https:\/\/app.slack.com\/huddle\//,
+    provider: "Slack Huddle",
   },
   {
     test: /^https:\/\/meet\.google\.com\//,

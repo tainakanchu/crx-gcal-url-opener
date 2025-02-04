@@ -165,12 +165,30 @@ describe("Config", () => {
         });
       }
     );
-    it.each(["https://00000.webex.com/00000/j.php?MTID=xxx"])(
-      "can extract WebEx from description: %s",
+    it.each([
+      "https://00000.webex.com/00000/j.php?MTID=xxx",
+      "https://xxx.my.webex.com/xxx.my/j.php?MTID=xxx",
+    ])("can extract WebEx from description: %s", async (url) => {
+      const config = await loadConfig();
+      expect(config.extractValidUrl({ description: url })).toMatchObject({
+        rule: { provider: "WebEx" },
+      });
+    });
+    it.each(["https://vc-jp.larksuite.com/j/xxx"])(
+      "can extract Lark from description: %s",
       async (url) => {
         const config = await loadConfig();
         expect(config.extractValidUrl({ description: url })).toMatchObject({
-          rule: { provider: "WebEx" },
+          rule: { provider: "Lark" },
+        });
+      }
+    );
+    it.each(["https://app.slack.com/huddle/xxx/xxx"])(
+      "can extract Slack Huddle from description: %s",
+      async (url) => {
+        const config = await loadConfig();
+        expect(config.extractValidUrl({ description: url })).toMatchObject({
+          rule: { provider: "Slack Huddle" },
         });
       }
     );
